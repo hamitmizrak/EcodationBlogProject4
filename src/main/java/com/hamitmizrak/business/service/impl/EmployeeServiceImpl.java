@@ -26,7 +26,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
     private final IEmployeeRepository repository;
     private final ModelMapperBean modelMapper;
 
-    //Model Mapper (DTO)
+    //Model Mapper (DTO )
     @Override
     public EmployeeDto entityToDto(EmployeeEntity employeeEntity) {
         EmployeeDto employeeDto=modelMapper.modelMapperMethod().map(employeeEntity,EmployeeDto.class);
