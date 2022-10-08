@@ -3,6 +3,7 @@ package com.hamitmizrak.ui.api.rest.controller;
 
 import com.hamitmizrak.business.dto.EmployeeDto;
 import com.hamitmizrak.business.service.IEmployeeService;
+import com.hamitmizrak.error.ApiResult;
 import com.hamitmizrak.ui.api.rest.IEmployeeApiRest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -25,6 +26,8 @@ import java.util.Map;
 @RequestMapping("/employee/api/v1")
 @CrossOrigin(origins = "http://localhost:3000")
 public class EmployeeRestApi implements IEmployeeApiRest {
+
+    private final static String PATH="/employee/api/v1/employees";
 
     //injection (3.YOL)
     //Service => field injection(1.YOL)
@@ -56,9 +59,13 @@ public class EmployeeRestApi implements IEmployeeApiRest {
     //http://localhost:8080/employee/api/v1/employees
     @Override
     @PostMapping("/employees")
-    public ResponseEntity<EmployeeDto> createEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
+    public ResponseEntity<ApiResult> createEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
         service.createEmployee(employeeDto);
-        return ResponseEntity.ok(employeeDto);
+
+        //int status, String path, String message
+        ApiResult apiResult=new ApiResult(200,PATH,"created Employee");
+        //return ResponseEntity.ok(employeeDto);
+        return ResponseEntity.ok(apiResult);
     }
 
     //LIST

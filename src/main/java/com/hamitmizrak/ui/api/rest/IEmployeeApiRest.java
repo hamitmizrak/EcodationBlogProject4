@@ -1,6 +1,7 @@
 package com.hamitmizrak.ui.api.rest;
 
 import com.hamitmizrak.business.dto.EmployeeDto;
+import com.hamitmizrak.error.ApiResult;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface IEmployeeApiRest {
     public String getRoot();
 
     //save
-    public ResponseEntity<EmployeeDto>  createEmployee(EmployeeDto employeeDto);
+    public ResponseEntity<ApiResult>  createEmployee(EmployeeDto employeeDto);
 
     //list
     public ResponseEntity<List<EmployeeDto>>  getAllEmployees();
