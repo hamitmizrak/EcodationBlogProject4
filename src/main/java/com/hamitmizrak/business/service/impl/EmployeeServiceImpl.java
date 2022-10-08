@@ -1,6 +1,7 @@
 package com.hamitmizrak.business.service.impl;
 
 import com.hamitmizrak.bean.ModelMapperBean;
+import com.hamitmizrak.bean.PasswordEncoderBean;
 import com.hamitmizrak.business.dto.EmployeeDto;
 import com.hamitmizrak.business.service.IEmployeeService;
 import com.hamitmizrak.data.entity.EmployeeEntity;
@@ -29,6 +30,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
     //constructor injection
     private final IEmployeeRepository repository;
     private final ModelMapperBean modelMapper;
+    private final PasswordEncoderBean passwordEncoderBean;
 
     //Model Mapper (DTO )
     @Override
@@ -49,6 +51,8 @@ public class EmployeeServiceImpl implements IEmployeeService {
     @PostMapping("/save/employee")
     public EmployeeDto createEmployee(@RequestBody EmployeeDto employeeDto) {
         if(employeeDto!=null){
+            //Spring Security maskeleme yapmak
+            employeeDto.setPassword(passwordEncoderBean.passwordEncoderMethod().encode(employeeDto.getPassword()));
             EmployeeEntity employeeEntity=dtoToEntity(employeeDto);
             repository.save(employeeEntity);
         }
