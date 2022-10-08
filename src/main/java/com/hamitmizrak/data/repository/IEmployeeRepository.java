@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IEmployeeRepository extends CrudRepository<EmployeeEntity,Long> {
+
+    //delivered query
+    EmployeeEntity findByEmail(String email);
 }

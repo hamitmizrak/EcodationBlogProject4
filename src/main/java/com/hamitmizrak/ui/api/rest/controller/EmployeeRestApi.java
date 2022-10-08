@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +56,7 @@ public class EmployeeRestApi implements IEmployeeApiRest {
     //http://localhost:8080/employee/api/v1/employees
     @Override
     @PostMapping("/employees")
-    public ResponseEntity<EmployeeDto> createEmployee(@RequestBody EmployeeDto employeeDto) {
+    public ResponseEntity<EmployeeDto> createEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
         service.createEmployee(employeeDto);
         return ResponseEntity.ok(employeeDto);
     }
@@ -92,7 +93,7 @@ public class EmployeeRestApi implements IEmployeeApiRest {
     //http://localhost:8080/employee/api/v1/employees/1
     @Override
     @PutMapping("/employees/{id}")
-    public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable(name="id") Long id, @RequestBody EmployeeDto employeeDto) {
+    public ResponseEntity<EmployeeDto> updateEmployee(@Valid @PathVariable(name="id") Long id, @RequestBody EmployeeDto employeeDto) {
         service.updateEmployee(id,employeeDto);
         return ResponseEntity.ok(employeeDto);
     }
