@@ -18,19 +18,13 @@ import java.util.Date;
 
 //Entity
 @Entity
-@Table(name="employee")
-public class EmployeeEntity implements Serializable {
+@Table(name = "employee")
+public class EmployeeEntity extends BaseEntity implements Serializable {
     //serileştirme
-public static final long serialVersionUID=1L;
+    public static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String name;
     private String surname;
     private double price;
 
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
 }
