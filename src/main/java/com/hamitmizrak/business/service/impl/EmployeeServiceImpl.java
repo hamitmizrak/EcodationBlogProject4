@@ -26,6 +26,7 @@ import java.util.Map;
 @Transactional
 public class EmployeeServiceImpl implements IEmployeeService {
 
+    //constructor injection
     private final IEmployeeRepository repository;
     private final ModelMapperBean modelMapper;
 
@@ -101,6 +102,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
         if(employeeDto!=null){
             employeeEntity.setName(employeeDto.getName());
             employeeEntity.setSurname(employeeDto.getSurname());
+            employeeEntity.setPrice(employeeDto.getPrice());
             repository.save(employeeEntity);
         }
         return employeeDto;

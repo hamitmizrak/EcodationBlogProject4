@@ -26,6 +26,7 @@ public static final long serialVersionUID=1L;
     private Long id;
     private String name;
     private String surname;
+    private double price;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
