@@ -21,9 +21,11 @@ public interface IEmployeeService {
     //find
     public EmployeeDto getEmployeeById(Long id);
 
+    //delete
+    public Map<String,Boolean>  deleteEmployee(Long id);
+
     //update
     public EmployeeDto updateEmployee(Long id,EmployeeDto employeeDto);
 
-    //delete
-    public Map<String,Boolean>  deleteEmployee(Long id);
+
 }
