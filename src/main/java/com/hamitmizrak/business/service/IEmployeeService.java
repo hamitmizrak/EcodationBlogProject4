@@ -27,5 +27,4 @@ public interface IEmployeeService {
     //update
     public EmployeeDto updateEmployee(Long id,EmployeeDto employeeDto);
 
-
 }

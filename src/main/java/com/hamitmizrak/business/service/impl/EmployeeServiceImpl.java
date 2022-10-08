@@ -21,9 +21,9 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Log4j2
 
-//Asıl işi yapan katmandır
 @Service
 @Transactional
+//Asıl işi yapan katmandır
 public class EmployeeServiceImpl implements IEmployeeService {
 
     //constructor injection

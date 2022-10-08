@@ -16,9 +16,11 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 
+//Entity
 @Entity
 @Table(name="employee")
 public class EmployeeEntity implements Serializable {
+    //serileştirme
 public static final long serialVersionUID=1L;
 
     @Id
