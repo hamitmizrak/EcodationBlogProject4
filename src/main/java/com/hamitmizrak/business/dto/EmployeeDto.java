@@ -15,7 +15,8 @@ import lombok.extern.log4j.Log4j2;
 
 public class EmployeeDto {
     private Long id;
-    private String name;
-    private String surname;
+    private String username;
+    private String email;
+    private String password;
     private double price;
 }

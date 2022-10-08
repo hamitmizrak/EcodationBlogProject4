@@ -99,9 +99,10 @@ public class EmployeeServiceImpl implements IEmployeeService {
     public EmployeeDto updateEmployee(@PathVariable(name="id") Long id, @RequestBody EmployeeDto employeeDto) {
         //find Entity
         EmployeeEntity employeeEntity=repository.findById(id).orElseThrow(()->new ResourceNotFoundException(id+" id bulunamadı"));
-        if(employeeDto!=null){
-            employeeEntity.setName(employeeDto.getName());
-            employeeEntity.setSurname(employeeDto.getSurname());
+        if(employeeEntity!=null){
+            employeeEntity.setUsername(employeeDto.getUsername());
+            employeeEntity.setEmail(employeeDto.getEmail());
+            employeeEntity.setPassword(employeeDto.getPassword());
             employeeEntity.setPrice(employeeDto.getPrice());
             repository.save(employeeEntity);
         }

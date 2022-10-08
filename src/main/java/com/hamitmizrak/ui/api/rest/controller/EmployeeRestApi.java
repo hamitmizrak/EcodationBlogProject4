@@ -88,11 +88,11 @@ public class EmployeeRestApi implements IEmployeeApiRest {
         return ResponseEntity.ok(response);
     }
 
-    //DELETE
+    //UPDATE
     //http://localhost:8080/employee/api/v1/employees/1
     @Override
     @PutMapping("/employees/{id}")
-    public ResponseEntity<EmployeeDto> updateEmployee(Long id, EmployeeDto employeeDto) {
+    public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable(name="id") Long id, @RequestBody EmployeeDto employeeDto) {
         service.updateEmployee(id,employeeDto);
         return ResponseEntity.ok(employeeDto);
     }

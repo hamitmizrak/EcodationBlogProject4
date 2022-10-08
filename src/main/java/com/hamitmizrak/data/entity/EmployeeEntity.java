@@ -1,14 +1,14 @@
 package com.hamitmizrak.data.entity;
 
+import com.hamitmizrak.data.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+
 
 //lombok
 @Data
@@ -23,8 +23,8 @@ public class EmployeeEntity extends BaseEntity implements Serializable {
     //serileştirme
     public static final long serialVersionUID = 1L;
 
-    private String name;
-    private String surname;
+    private String username;
+    private String email;
+    private String password;
     private double price;
-
 }
