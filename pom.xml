@@ -124,6 +124,12 @@
         <scope>runtime</scope>
     </dependency>
 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.3.5</version>
+        </dependency>
+
     <!--Mysql-->
     <dependency>
         <groupId>mysql</groupId>
@@ -132,11 +138,11 @@
     </dependency>
 
     <!--postgresql-->
-<!--    <dependency>
+    <dependency>
         <groupId>org.postgresql</groupId>
         <artifactId>postgresql</artifactId>
         <scope>runtime</scope>
-    </dependency>-->
+    </dependency>
 
         <!--application.properties ==> application.yml-->
         <dependency>

@@ -22,6 +22,7 @@ import javax.validation.constraints.Size;
 public class EmployeeDto {
     private Long id;
 
+
     @NotNull(message="{hamit.username.validation.constraints.NotNull.message}")
     private String username;
 
