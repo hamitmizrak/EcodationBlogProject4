@@ -18,7 +18,6 @@ public class PostmanUrl {
     //GET
     //http://localhost:8080/employee/api/v1/employees
 
-
     //FIND
     //GET
     //http://localhost:8080/employee/api/v1/employees/1
@@ -31,12 +30,11 @@ public class PostmanUrl {
     //UPDATE
     //http://localhost:8080/employee/api/v1/employees/1
     /*
+    {
     "username":"Hamit",
     "email":"hamitmizrak@gmail.com",
     "password":"password",
     "price":5
+    }
     */
-
-
-
 }

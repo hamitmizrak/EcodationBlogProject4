@@ -8,6 +8,9 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.annotation.EnableAsync;
 
+import javax.annotation.PostConstruct;
+import java.util.TimeZone;
+
 // Mongo aktif etmek icin
 // @EnableMongoRepositories
 
@@ -33,6 +36,12 @@ import org.springframework.scheduling.annotation.EnableAsync;
 //@SpringBootApplication
 public class EcodationJavaFullStack4Application {
 
+    @PostConstruct
+    public void init(){
+        TimeZone.setDefault(TimeZone.getTimeZone("IST"));
+    }
+
+    //PSVM
     public static void main(String[] args) {
         //devtool active inactive
         System.setProperty("spring.devtools.restart.enabled","true");

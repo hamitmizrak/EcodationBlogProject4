@@ -13,7 +13,7 @@ public interface IEmployeeApiRest {
     public String getRoot();
 
     //save
-    public ResponseEntity<ApiResult>  createEmployee(EmployeeDto employeeDto);
+    public ResponseEntity<?>  createEmployee(EmployeeDto employeeDto);
 
     //list
     public ResponseEntity<List<EmployeeDto>>  getAllEmployees();

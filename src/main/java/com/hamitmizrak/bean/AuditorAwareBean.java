@@ -10,7 +10,7 @@ public class AuditorAwareBean {
 
      /*
     Dikkat
-    @SpringBootApplication ==>@EnableJpaAuditing(auditorAwareRef = "AuditorAwareBean")
+    @SpringBootApplication ==>@EnableJpaAuditing(auditorAwareRef = "auditorAwareMethod")
     */
     @Bean
     public AuditorAware auditorAwareMethod(){

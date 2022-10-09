@@ -3,8 +3,6 @@ package com.hamitmizrak.error;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
-import net.bytebuddy.asm.Advice;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -36,8 +34,4 @@ public class ApiResult {
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd-MM-yyyy HH:mm:ss",locale);
          return simpleDateFormat.format(new Date());
     }
-
-
-
-
 }

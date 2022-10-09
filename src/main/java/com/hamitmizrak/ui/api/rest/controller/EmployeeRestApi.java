@@ -1,6 +1,5 @@
 package com.hamitmizrak.ui.api.rest.controller;
 
-
 import com.hamitmizrak.business.dto.EmployeeDto;
 import com.hamitmizrak.business.service.IEmployeeService;
 import com.hamitmizrak.error.ApiResult;
@@ -10,7 +9,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -59,9 +57,8 @@ public class EmployeeRestApi implements IEmployeeApiRest {
     //http://localhost:8080/employee/api/v1/employees
     @Override
     @PostMapping("/employees")
-    public ResponseEntity<ApiResult> createEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
+    public ResponseEntity<?> createEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
         service.createEmployee(employeeDto);
-
         //int status, String path, String message
         ApiResult apiResult=new ApiResult(200,PATH,"created Employee");
         //return ResponseEntity.ok(employeeDto);

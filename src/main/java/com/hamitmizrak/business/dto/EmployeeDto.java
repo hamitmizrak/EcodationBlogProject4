@@ -20,7 +20,6 @@ import javax.validation.constraints.Size;
 @Log4j2
 
 public class EmployeeDto {
-
     private Long id;
 
     @NotNull(message="{hamit.username.validation.constraints.NotNull.message}")
