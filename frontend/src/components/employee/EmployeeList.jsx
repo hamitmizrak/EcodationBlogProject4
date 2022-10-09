@@ -16,6 +16,9 @@ export default class EmployeeList extends Component {
     this.state={
       employees:[],
     };
+
+    //bind
+
   }//end constructor
 
   //CDM
