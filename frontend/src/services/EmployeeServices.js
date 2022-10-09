@@ -3,11 +3,11 @@
 //axios import added
 import axios from "axios";
 
-
 //sabit URL
 //http://localhost:8080/employee/api/v1/employees
 const EMPLOYEE_URL="/employee/api/v1/employees";
 
+//class
 class EmployeeServices{
 
     //SAVE 
@@ -23,13 +23,11 @@ class EmployeeServices{
         return axios.get(EMPLOYEE_URL);
     }
 
-
     //FIND
     //GET => http://localhost:8080/employee/api/v1/employees/1
     getEmployeeById(id) {
         return axios.get(EMPLOYEE_URL+"/"+id);
     }
-
 
     //DELETE
     //DELETE => http://localhost:8080/employee/api/v1/employees/1
@@ -43,4 +41,6 @@ class EmployeeServices{
         return axios.put(EMPLOYEE_URL+"/"+id,employeeDto);
     }
 } //end EmployeeServices
+
+
 export default new EmployeeServices();

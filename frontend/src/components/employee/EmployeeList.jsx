@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
-import EmployeeServices from '../services/EmployeeServices';
+import EmployeeServices from '../../services/EmployeeServices';
+
+    {/* 
+private Long id;
+private String username;
+private String email;
+private String password;
+private double price; 
+*/}
 
 export default class EmployeeList extends Component {
   constructor(props) {
     super(props);
-
     //state 
     this.state={
       employees:[],
     };
-
   }//end constructor
 
   //CDM
@@ -21,21 +27,14 @@ export default class EmployeeList extends Component {
         })
       }
     );
-  }
-  
+  }//end componentDidMount
 
   // göstermek
   render() {
     return (
       <>
         <h1 className="text-center text-uppercase">Müşteri Listesi</h1>
-        {/* 
-    private Long id;
-    private String username;
-    private String email;
-    private String password;
-    private double price; 
-    */}
+ 
         <div className="row">
           <div className="mx-auto"><button className="btn btn-primary">EKLEME</button></div>
         </div>
@@ -46,8 +45,9 @@ export default class EmployeeList extends Component {
               <th>ID</th>
               <th>USERNAME</th>
               <th>EMAIL</th>
-              <th>PASSWORD</th>
               <th>PRICE</th>
+              <th>PASSWORD</th>
+              
               <th>UPDATE</th>
               <th>VIEW</th>
               <th>DELETE</th>
@@ -60,24 +60,18 @@ export default class EmployeeList extends Component {
               <td>{employees.id}</td>
               <td>{employees.username}</td>
               <td>{employees.email}</td>
-              <td>{employees.password}</td>
               <td>{employees.price}</td>
-              <td><button><i className="fa-solid fa-pen-to-square"></i></button></td>
-              <td><button><i class="fa-solid fa-mountain-sun"></i></button></td>
-              <td><button><i class="fa-solid fa-trash"></i></button></td>
+              <td>{employees.password}</td>
+              
+              <td><button><i className="fa-solid fa-pen-to-square text-primary"></i></button></td>
+              <td><button><i className="fa-solid fa-mountain-sun text-success"></i></button></td>
+              <td><button><i className="fa-solid fa-trash text-danger"></i></button></td>
             </tr>
             )
             }
           </tbody>
         </table>
-        {/* 
-    private Long id;
-    private String username;
-    private String email;
-    private String password;
-    private double price; 
-    */}
       </>
     )
-  }
-}
+  } //end render
+}//end class EmployeeList
