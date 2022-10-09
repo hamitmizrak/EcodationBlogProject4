@@ -42,7 +42,7 @@ export default class EmployeeList extends Component {
           <div className="mx-auto"><button className="btn btn-primary">EKLEME</button></div>
         </div>
 
-        <table className="table table-hover table-striped">
+        <table className="table table-hover table-striped" id="datalistregisterTable">
           <thead>
             <tr>
               <th>ID</th>

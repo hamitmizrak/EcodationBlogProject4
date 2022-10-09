@@ -12,7 +12,7 @@ export default function Header(props) {
       // React.Fragment ister <></> yazabilirsin
     <React.Fragment>
       <header>
-        <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
           <div className="container">
             <a className="navbar-brand" href={props.url}>
               <i className={props.icon}></i>
