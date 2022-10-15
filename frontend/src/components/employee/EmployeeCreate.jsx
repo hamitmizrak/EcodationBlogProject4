@@ -4,7 +4,7 @@ class EmployeeCreate extends Component {
   render() {
     return (
       <div>
-
+<h1>EKLEME GÜNCELLEME</h1>
       </div>
     );
   }
