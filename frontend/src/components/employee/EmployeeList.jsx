@@ -71,7 +71,7 @@ export default class EmployeeList extends Component {
     render() {
         return (
             <>
-                <h1 className="text-center text-uppercase">Müşteri Listesi</h1>
+                <h1 className="text-center text-uppercase mt-5">Müşteri Listesi</h1>
                 <div className="row">
                     <div className="mx-auto">
                         <button className="btn btn-primary" onClick={this.addEmployee}>EKLEME</button>
@@ -86,7 +86,6 @@ export default class EmployeeList extends Component {
                         <th>EMAIL</th>
                         <th>PRICE</th>
                         <th>PASSWORD</th>
-
                         <th>UPDATE</th>
                         <th>VIEW</th>
                         <th>DELETE</th>
@@ -124,6 +123,4 @@ export default class EmployeeList extends Component {
             </>
         )
     } //end render
-
-
 }//end class EmployeeList
