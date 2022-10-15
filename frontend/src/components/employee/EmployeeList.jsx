@@ -44,12 +44,14 @@ export default class EmployeeList extends Component {
 
     //UPDATE  => /employee-add/:id
     editEmployee(id) {
-        this.props.history.push('/employee-add/${id}')
+        //backtick: `
+        this.props.history.push(`/employee-add/${id}`)
     }
 
     //VIEW employee-view/:id
     viewEmployee(id) {
-     this.props.history.push('employee-view/${id}')
+        //backtick: `
+     this.props.history.push(`employee-view/${id}`)
     }
 
     //DELETE
