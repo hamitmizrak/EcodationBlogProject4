@@ -40,7 +40,6 @@ export default class EmployeeView extends Component {
             <a href="">Click Me</a></div>
         </div>
         <div className="card-footer text-muted">{this.state.employee.systemCreatedDate}</div>
-
       </>
     )//end return
   }//end render

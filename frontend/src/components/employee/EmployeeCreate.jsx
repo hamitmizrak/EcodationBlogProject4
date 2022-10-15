@@ -99,18 +99,21 @@ class EmployeeCreate extends Component {
         })
     }
 
+    //email
     onChangeEmail=(event)=>{
         this.setState({
             email:event.target.value
         })
     }
 
+    //password
     onChangePassword=(event)=>{
         this.setState({
             password:event.target.value
         })
     }
 
+    //price
     onChangePrice=(event)=>{
         this.setState({
             price:event.target.value

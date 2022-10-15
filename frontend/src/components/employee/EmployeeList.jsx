@@ -9,7 +9,6 @@ private String password;
 private double price; 
 */
 }
-
 export default class EmployeeList extends Component {
     //constructor
     constructor(props) {
