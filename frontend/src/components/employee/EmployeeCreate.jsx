@@ -6,8 +6,9 @@ import EmployeeCreateInput from '../../reusability/EmployeeCreateInput';
 //Services: EmployeeServices
 import EmployeeServices from "../../services/EmployeeServices";
 
-// Dil secenegi
+//Dil secenegi import edildi
 import { withTranslation } from 'react-i18next';
+
 
 // class EmployeeCreate
 class EmployeeCreate extends Component {
@@ -20,7 +21,9 @@ class EmployeeCreate extends Component {
             username: "",
             email: "",
             password: "",
-            price: ""
+            price: "",
+            submitSpinner: false,
+            apiResultError: {}
         }
         //bind
         this.homePage = this.homePage.bind(this);
@@ -30,6 +33,17 @@ class EmployeeCreate extends Component {
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangePrice = this.onChangePrice.bind(this);
+
+        this.internationalizationLanguage = this.internationalizationLanguage.bind(this);
+    }
+
+    internationalizationLanguage = language => {
+        //destructing (ES6)
+        const { i18n } = this.props;
+        i18n.changeLanguage(language);
+
+        //EmployeeServices
+        EmployeeServices.otherLanguageServices(language);
     }
 
     //CDM
@@ -52,6 +66,9 @@ class EmployeeCreate extends Component {
             ) //end EmployeeServices
         } //end else
     } //end componentDidMount
+
+    // internationalizationLanguage arrow function Flags
+
 
     //HOMEPAGE
     homePage() {
@@ -76,28 +93,46 @@ class EmployeeCreate extends Component {
         //browser bir yere göndermesin
         event.preventDefault();
         //employee objesini doldurmak
+        const { username, email, password, price } = this.state;
         let employee = {
-            username: this.state.username,
-            email: this.state.email,
-            password: this.state.password,
-            price: this.state.price,
+            username,
+            email,
+            password,
+            price
         }
-        alert(employee.username + " " + employee.email + employee.password + employee.price)
+        //alert(employee.username + " " + employee.email + employee.password + employee.price)
+
+        //spinner
+        this.setState({ submitSpinner: true })
+
         //EKLEME
         if (this.state.id === "_add") {
-            EmployeeServices.createEmployee(employee).then(
-                response => {
-                    this.props.history.push('/employees')
-                    alert("Ekledi")
+            EmployeeServices.createEmployee(employee).then((response) => {
+                this.setState({ submitSpinner: false })
+                this.props.history.push('/employees')
+                alert("Ekledi")
+            }
+            ).catch(error => {
+                this.setState({ submitSpinner: false })
+                console.log(error.response.data)
+                if (error.response.data.validation) {
+                    this.setState({ apiResultError: console.error.response.data.validation })
                 }
-            );
+            });
+
         } else { //GÜNCELLEME
-            EmployeeServices.updateEmployee(this.state.id, employee).then(
-                response => {
-                    this.props.history.push('/employees')
-                    alert("Güncelle")
+            EmployeeServices.updateEmployee(this.state.id, employee).then(response => {
+                this.setState({ submitSpinner: false })
+                this.props.history.push('/employees')
+                alert("Güncelle")
+            }
+            ).catch(error => {
+                this.setState({ submitSpinner: false })
+                console.log(error.response.data)
+                if (error.response.data.validation) {
+                    this.setState({ apiResultError: console.error.response.data.validation })
                 }
-            )
+            });
         }
     }
 
@@ -132,6 +167,8 @@ class EmployeeCreate extends Component {
 
     //RENDER
     render() {
+        const { submitSpinner, apiResultError } = this.state;
+        const { username, email, password, price } = apiResultError
         return (
             <>
                 {this.titleDynamicsSaveOrUpdate()}
@@ -146,27 +183,38 @@ class EmployeeCreate extends Component {
                             {/*username*/}
                             <EmployeeCreateInput type="text" placeholder="Müşteri Kullanıcı Adı"
                                 name="username" id="username" label={this.props.t('username')} focus="true" value={this.state.username}
-                                onChangeInput={this.onChangeUserName} />
+                                onChangeInput={this.onChangeUserName} error={username} />
 
                             {/*email*/}
                             <EmployeeCreateInput type="email" placeholder="Müşteri Kullanıcı Email"
                                 name="email" id="email" label={this.props.t('email')} focus="false" value={this.state.email}
-                                onChangeInput={this.onChangeEmail} />
+                                onChangeInput={this.onChangeEmail} error={email} />
 
                             {/*password*/}
                             <EmployeeCreateInput type="password" placeholder="Müşteri Kullanıcı Şifresi"
                                 name="password" id="password" label={this.props.t('password')} focus="false" value={this.state.password}
-                                onChangeInput={this.onChangePassword} />
+                                onChangeInput={this.onChangePassword} error={password} />
 
                             {/*price*/}
                             <EmployeeCreateInput type="number" placeholder="Müşteri Kullanıcı numara"
                                 name="price" id="price" label={this.props.t('price')} focus="false" value={this.state.price}
-                                onChangeInput={this.onChangePrice} />
+                                onChangeInput={this.onChangePrice} error={price} />
 
                             {/*Button*/}
                             <div className="mt-3 mb-3 d-inline">
-                                <button className="btn btn-danger" onClick={this.cancel.bind(this)}>Temizle</button>
-                                <button className="btn btn-primary" onClick={this.saveOrUpdateEmployee}>Gönder</button>
+                                <button type="reset" className="btn btn-danger" onClick={this.cancel.bind(this)}>Temizle</button>
+                                <button type="submit" className="btn btn-primary" onClick={this.saveOrUpdateEmployee}>
+
+                                    {submitSpinner ? <div className="spinner-border text-warning" role="status">
+                                        <span className="sr-only">Loading...</span>
+                                    </div> : ""}
+                                    Gönder
+                                </button>
+                            </div>
+
+                            <div className="container">
+                                <img src="tr.png" alt="TR" onClick={() => this.internationalizationLanguage('tr')} />
+                                <img src="en.png" alt="EN" onClick={() => this.internationalizationLanguage('en')} />
                             </div>
                             {/*i18n added*/}
                         </div>
@@ -178,3 +226,6 @@ class EmployeeCreate extends Component {
 }
 
 export default withTranslation()(EmployeeCreate)
+
+// flag click
+// Error face

@@ -23,7 +23,7 @@ i18n.use(initReactI18next).init({
             }
     },
     //fallbackLng: dilimiz default olarak tr olsun
-    fallbackLng: 'tr',
+    fallbackLng: 'en',
     //kelimeleri nerede alsın
     ns: ['translations'],
     defaultNS: 'translations',

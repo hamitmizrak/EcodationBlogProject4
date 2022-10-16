@@ -13,7 +13,6 @@ root.render(
   <React.StrictMode>
       <React.Fragment>
           <Employee />
-          <OtherLanguage />
       </React.Fragment>
 
   </React.StrictMode>

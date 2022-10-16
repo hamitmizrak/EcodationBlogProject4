@@ -4,11 +4,11 @@
 //function component: props için this kullanma !!!!
 import React from 'react'
 
-//Services
-import EmployeeServices from '../services/EmployeeServices';
-
 //Dil secenegi import edildi
 import { withTranslation } from 'react-i18next';
+
+//Services
+import EmployeeServices from '../services/EmployeeServices';
 
 // function component ////////////////////////
 function OtherLanguage(props) {
