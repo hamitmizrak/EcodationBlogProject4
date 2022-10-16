@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import EmployeeCreateInput from '../../reusability/EmployeeCreateInput';
 import EmployeeServices from "../../services/EmployeeServices";
 
 class EmployeeCreate extends Component {
@@ -14,13 +15,13 @@ class EmployeeCreate extends Component {
             price: ""
         }
         //bind
-        this.homePage=this.homePage.bind(this);
-        this.titleDynamicsSaveOrUpdate=this.titleDynamicsSaveOrUpdate.bind(this);
-        this.saveOrUpdateEmployee=this.saveOrUpdateEmployee.bind(this);
-        this.onChangeUserName=this.onChangeUserName.bind(this);
-        this.onChangeEmail=this.onChangeEmail.bind(this);
-        this.onChangePassword=this.onChangePassword.bind(this);
-        this.onChangePrice=this.onChangePrice.bind(this);
+        this.homePage = this.homePage.bind(this);
+        this.titleDynamicsSaveOrUpdate = this.titleDynamicsSaveOrUpdate.bind(this);
+        this.saveOrUpdateEmployee = this.saveOrUpdateEmployee.bind(this);
+        this.onChangeUserName = this.onChangeUserName.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangePrice = this.onChangePrice.bind(this);
     }
 
     //CDM
@@ -73,7 +74,7 @@ class EmployeeCreate extends Component {
             password: this.state.password,
             price: this.state.price,
         }
-        alert(employee.username+" "+employee.email+employee.password+employee.price)
+        alert(employee.username + " " + employee.email + employee.password + employee.price)
         //EKLEME
         if (this.state.id === "_add") {
             EmployeeServices.createEmployee(employee).then(
@@ -93,30 +94,30 @@ class EmployeeCreate extends Component {
     }
 
     //username
-    onChangeUserName=(event)=>{
+    onChangeUserName = (event) => {
         this.setState({
-            username:event.target.value
+            username: event.target.value
         })
     }
 
     //email
-    onChangeEmail=(event)=>{
+    onChangeEmail = (event) => {
         this.setState({
-            email:event.target.value
+            email: event.target.value
         })
     }
 
     //password
-    onChangePassword=(event)=>{
+    onChangePassword = (event) => {
         this.setState({
-            password:event.target.value
+            password: event.target.value
         })
     }
 
     //price
-    onChangePrice=(event)=>{
+    onChangePrice = (event) => {
         this.setState({
-            price:event.target.value
+            price: event.target.value
         })
     }
 
@@ -135,32 +136,24 @@ class EmployeeCreate extends Component {
                         <div className="card-body">
 
                             {/*username*/}
-                            <div className="form-group">
-                                <label htmlFor="">username</label>
-                                <input type="text" className="form-control" placeholder="Müşteri Kullanıcı Adı"
-                                name="username" value={this.state.username} onChange={this.onChangeUserName}></input>
-                            </div>
+                            <EmployeeCreateInput type="text" placeholder="Müşteri Kullanıcı Adı"
+                                name="username" id="username" label="kullanıcı adı" focus="true" value={this.state.username}
+                                onChangeInput={this.onChangeUserName} />
 
                             {/*email*/}
-                            <div className="form-group">
-                                <label htmlFor="">email</label>
-                                <input type="email" className="form-control" placeholder="Müşteri Kullanıcı email"
-                                       name="email" value={this.state.email} onChange={this.onChangeEmail}></input>
-                            </div>
+                            <EmployeeCreateInput type="email" placeholder="Müşteri Kullanıcı Email"
+                                name="email" id="email" label="kullanıcı email" focus="false" value={this.state.email}
+                                onChangeInput={this.onChangeEmail} />
 
                             {/*password*/}
-                            <div className="form-group">
-                                <label htmlFor="">password</label>
-                                <input type="password" className="form-control" placeholder="Müşteri Kullanıcı password"
-                                       name="password" value={this.state.password} onChange={this.onChangePassword}></input>
-                            </div>
+                            <EmployeeCreateInput type="password" placeholder="Müşteri Kullanıcı Şifresi"
+                                name="password" id="password" label="kullanıcı Şifresi" focus="false" value={this.state.password}
+                                onChangeInput={this.onChangePassword} />
 
                             {/*price*/}
-                            <div className="form-group">
-                                <label htmlFor="">price</label>
-                                <input type="text" className="form-control" placeholder="Müşteri Kullanıcı price"
-                                       name="price" value={this.state.price} onChange={this.onChangePrice}></input>
-                            </div>
+                            <EmployeeCreateInput type="number" placeholder="Müşteri Kullanıcı numara"
+                                name="price" id="price" label="kullanıcı Numarası" focus="false" value={this.state.price}
+                                onChangeInput={this.onChangePrice} />
 
                             {/*Button*/}
                             <div className="mt-3 mb-3 d-inline">

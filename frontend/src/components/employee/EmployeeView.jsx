@@ -6,9 +6,9 @@ export default class EmployeeView extends Component {
   constructor(props) {
     super(props);
     //state
-    this.state={
-      id:this.props.match.params.id,
-      employee:{}
+    this.state = {
+      id: this.props.match.params.id,
+      employee: {}
     }
     //bind
   }
@@ -16,15 +16,15 @@ export default class EmployeeView extends Component {
   //CDM
   componentDidMount() {
     EmployeeServices.getEmployeeById(this.state.id).then(
-        response =>{
-          this.setState({
-            employee:response.data
-          })
-        }
+      response => {
+        this.setState({
+          employee: response.data
+        })
+      }
     )
   }
 
-//render
+  //render
   render() {
     return (
       <>
