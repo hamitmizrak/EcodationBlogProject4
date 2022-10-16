@@ -5,15 +5,18 @@ import reportWebVitals from './reportWebVitals';
 
 //Employee added
 import Employee from "./Employee";
-import OtherLanguage from "./i18n/OtherLanguage";
+
+// i18n ekledim
+import './internationalization/i18nlanguage'
+
 
 //Root
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <React.Fragment>
-          <Employee />
-      </React.Fragment>
+    <React.Fragment>
+      <Employee />
+    </React.Fragment>
 
   </React.StrictMode>
 );//end render

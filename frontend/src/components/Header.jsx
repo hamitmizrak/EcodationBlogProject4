@@ -6,6 +6,7 @@
 //en tepede 1 tane div olmak zorundadır.
 
 import React from 'react'
+import OtherLanguageReusability from "../internationalization/OtherLanguageReusability";
 
 export default function Header(props) {
   return (
@@ -41,10 +42,10 @@ export default function Header(props) {
                 </li>
 
                 <li className="nav-item dropdown">
-                  <a className="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                  <a className="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dil</a>
                   <div className="dropdown-menu" aria-labelledby="dropdownId">
-                    <a className="dropdown-item" href="#">Action 1</a>
-                    <a className="dropdown-item" href="#">Action 2</a>
+                    {/*i18n added*/}
+                    <OtherLanguageReusability/>
                   </div>
                 </li>
 

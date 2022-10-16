@@ -12,9 +12,9 @@ class EmployeeServices {
 
 
     //Header Flags(i18n data)
-    otherLanguageServices(language) {
-        axios.defaults.headers['accept-language'] = language;
-    }
+    // headerLanguageServices(language) {
+    //     axios.defaults.headers['accept-language'] = language;
+    // }
 
     //SAVE 
     //POST =>  http://localhost:8080/employee/api/v1/employees

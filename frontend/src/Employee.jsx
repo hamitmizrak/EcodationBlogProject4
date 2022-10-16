@@ -9,10 +9,9 @@ import Footer from './components/Footer';
 import EmployeeList from './components/employee/EmployeeList';
 import EmployeeCreate from './components/employee/EmployeeCreate';
 import EmployeeView from './components/employee/EmployeeView';
-import {withTranslation} from "react-i18next";
 
 //Class
-class Employee extends Component {
+export default class Employee extends Component {
     render() {
         return (
             <React.Fragment>
@@ -32,7 +31,4 @@ class Employee extends Component {
         ); // end return
     }// end render
 }//class Employee
-
-
-export default withTranslation()(Employee)
 
