@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
+
+// EmployeeCreateInput
 import EmployeeCreateInput from '../../reusability/EmployeeCreateInput';
+
+//Services: EmployeeServices
 import EmployeeServices from "../../services/EmployeeServices";
 
+// Dil secenegi
+import { withTranslation } from 'react-i18next';
+
+// class EmployeeCreate
 class EmployeeCreate extends Component {
     //constructor
     constructor(props) {
@@ -137,22 +145,22 @@ class EmployeeCreate extends Component {
 
                             {/*username*/}
                             <EmployeeCreateInput type="text" placeholder="Müşteri Kullanıcı Adı"
-                                name="username" id="username" label="kullanıcı adı" focus="true" value={this.state.username}
+                                name="username" id="username" label={this.props.t('username')} focus="true" value={this.state.username}
                                 onChangeInput={this.onChangeUserName} />
 
                             {/*email*/}
                             <EmployeeCreateInput type="email" placeholder="Müşteri Kullanıcı Email"
-                                name="email" id="email" label="kullanıcı email" focus="false" value={this.state.email}
+                                name="email" id="email" label={this.props.t('email')} focus="false" value={this.state.email}
                                 onChangeInput={this.onChangeEmail} />
 
                             {/*password*/}
                             <EmployeeCreateInput type="password" placeholder="Müşteri Kullanıcı Şifresi"
-                                name="password" id="password" label="kullanıcı Şifresi" focus="false" value={this.state.password}
+                                name="password" id="password" label={this.props.t('password')} focus="false" value={this.state.password}
                                 onChangeInput={this.onChangePassword} />
 
                             {/*price*/}
                             <EmployeeCreateInput type="number" placeholder="Müşteri Kullanıcı numara"
-                                name="price" id="price" label="kullanıcı Numarası" focus="false" value={this.state.price}
+                                name="price" id="price" label={this.props.t('price')} focus="false" value={this.state.price}
                                 onChangeInput={this.onChangePrice} />
 
                             {/*Button*/}
@@ -160,6 +168,7 @@ class EmployeeCreate extends Component {
                                 <button className="btn btn-danger" onClick={this.cancel.bind(this)}>Temizle</button>
                                 <button className="btn btn-primary" onClick={this.saveOrUpdateEmployee}>Gönder</button>
                             </div>
+                            {/*i18n added*/}
                         </div>
                     </div>
                 </div>
@@ -168,4 +177,4 @@ class EmployeeCreate extends Component {
     }
 }
 
-export default EmployeeCreate;
+export default withTranslation()(EmployeeCreate)

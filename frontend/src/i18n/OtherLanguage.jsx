@@ -28,8 +28,8 @@ function OtherLanguage(props) {
     return (
         <>
             <div className="container">
-                <img src="tr.png" alt="TR" onClick={internationalizationLanguage('tr')} />
-                <img src="en.png" alt="EN" onClick={internationalizationLanguage('en')} />
+                <img src="tr.png" alt="TR" onClick={()=>internationalizationLanguage('tr')} />
+                <img src="en.png" alt="EN" onClick={()=>internationalizationLanguage('en')} />
             </div>
         </>
     ) //end return

@@ -3,6 +3,7 @@
 //function component: props için parametre olarak vermeliyiz.
 //function component: props için this kullanma !!!!
 import React from 'react'
+import OtherLanguage from "../i18n/OtherLanguage";
 
 export default function EmployeeCreateInput(props) {
     //descructing
@@ -15,6 +16,7 @@ export default function EmployeeCreateInput(props) {
                 <input type={type} className="form-control" placeholder={placeholder}
                     name={name} id={id} value={value} onChange={onChangeInput} focus={focus}></input>
             </div>
+
         </>
     ) //end return
 } //end function EmployeeCreateInput
