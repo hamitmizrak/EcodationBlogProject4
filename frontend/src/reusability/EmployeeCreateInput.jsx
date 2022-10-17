@@ -7,14 +7,17 @@ import React from 'react'
 
 export default function EmployeeCreateInput(props) {
     //descructing
-    const { label, type, name, id, placeholder, onChangeInput, focus, value } = props;
+    const { label, type, name, id, placeholder, onChangeInput, focus, value,error } = props;
+     //daha sade örünmesini sağladım
+     const className = name ? "is-invalid form-control mb-3" : "form-control mb-3";
     //return
     return (
         <>
             <div className="form-group">
                 <label htmlFor="">{label}</label>
-                <input type={type} className="form-control mb-3" placeholder={placeholder}
-                    name={name} id={id} value={value} onChange={onChangeInput} focus={focus}></input>
+                <input type={type} id={id} name={name} className={className} placeholder={placeholder}
+                      value={value} onChange={onChangeInput} focus={focus}/>
+                <div className="invalid-feedback">{error}</div>
             </div>
 
         </>

@@ -18,21 +18,22 @@ class EmployeeCreate extends Component {
         //state
         this.state = {
             id: this.props.match.params.id,
-            username: "",
-            email: "",
-            password: "",
-            price: "",
+            username: null,
+            email: null,
+            password: null,
+            price: null,
             submitSpinner: false,
+            errors: {}
 
         }
         //bind
         this.homePage = this.homePage.bind(this);
         this.titleDynamicsSaveOrUpdate = this.titleDynamicsSaveOrUpdate.bind(this);
         this.saveOrUpdateEmployee = this.saveOrUpdateEmployee.bind(this);
-        this.onChangeUserName = this.onChangeUserName.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
-        this.onChangePassword = this.onChangePassword.bind(this);
-        this.onChangePrice = this.onChangePrice.bind(this);
+        /* this.onChangeUserName = this.onChangeUserName.bind(this);
+         this.onChangeEmail = this.onChangeEmail.bind(this);
+         this.onChangePassword = this.onChangePassword.bind(this);
+         this.onChangePrice = this.onChangePrice.bind(this);*/
     } //end  constructor
 
 
@@ -80,6 +81,9 @@ class EmployeeCreate extends Component {
     saveOrUpdateEmployee = (event) => {
         //browser bir yere göndermesin
         event.preventDefault();
+
+        this.setState({ error: null });
+
         //employee objesini doldurmak
         const { username, email, password, price } = this.state;
         let employee = {
@@ -96,59 +100,69 @@ class EmployeeCreate extends Component {
         //EKLEME
         if (this.state.id === "_add") {
             EmployeeServices.createEmployee(employee).then((response) => {
-                    this.setState({ submitSpinner: false })
-                    this.props.history.push('/employees')
-                    alert("Ekledi")
-                }
-            ).catch(error => {
                 this.setState({ submitSpinner: false })
+                this.props.history.push('/employees')
+                alert("Ekledi")
+            }
+            ).catch(error => {
+                console.log(error.response.data.validationErrors);
                 console.log(error.response.data)
+                //Her gelen hata validation olmayabilir
+                if (error.response.data.validationErrors) {
+                    this.setState({ errors: error.response.data.validationErrors })
+                }
+                this.setState({ submitSpinner: false })
+
             });
 
         } else { //GÜNCELLEME
             EmployeeServices.updateEmployee(this.state.id, employee).then(response => {
-                    this.setState({ submitSpinner: false })
-                    this.props.history.push('/employees')
-                    alert("Güncelle")
-                }
-            ).catch(error => {
                 this.setState({ submitSpinner: false })
+                this.props.history.push('/employees')
+                alert("Güncelle")
+            }
+            ).catch(error => {
+                console.log(error.response.data.validationErrors);
                 console.log(error.response.data)
+                //Her gelen hata validation olmayabilir
+                if (error.response.data.validationErrors) {
+                    this.setState({ errors: error.response.data.validationErrors })
+                }
+                this.setState({ submitSpinner: false })
             });
         }
     }
 
     //username
-    onChangeUserName = (event) => {
-        this.setState({
-            username: event.target.value
-        })
-    }
-
     //email
-    onChangeEmail = (event) => {
-        this.setState({
-            email: event.target.value
-        })
-    }
-
     //password
-    onChangePassword = (event) => {
-        this.setState({
-            password: event.target.value
-        })
-    }
-
     //price
-    onChangePrice = (event) => {
+    /* onChangePrice = (event) => {
+         this.setState({
+             price: event.target.value
+         })
+     }*/
+    /*Input ==> onChange: inputlardaki her bir hareketi yakalama*/
+    onChangeInput = (event) => {
+        const { name, value } = event.target;
+        //input eğer içinde bir şey yazmazsak is-invalid kaldıralım
+        // buradaki üç nokta (...) copy için alıyoruz.
+        const errors = { ...this.state.errors };
+        //input eğer içinde bir şey yazmazsak is-invalid kaldıralım
+        errors[name] = undefined;
+
+        //state içeriğini tekrar güncelledim => apiError
         this.setState({
-            price: event.target.value
+            [name]: value,
+            errors
         })
-    }
+    } //end onChangeInput
 
     //RENDER
     render() {
-        const { submitSpinner} = this.state;
+        //this.state.errors.username
+        const { submitSpinner } = this.state;
+        const { username, email, password, price } = this.state.errors;
         return (
             <>
                 {/*Home page*/}
@@ -162,23 +176,23 @@ class EmployeeCreate extends Component {
                             <div className="card-body">
                                 {/*username*/}
                                 <EmployeeCreateInput type="text" placeholder={this.props.t('username')}
-                                                     name="username" id="username" label={this.props.t('username')} focus="true" value={this.state.username}
-                                                     onChangeInput={this.onChangeUserName}  />
+                                    name="username" id="username" label={this.props.t('username')} focus="true" value={this.state.username}
+                                    onChangeInput={this.onChangeInput} error={username} />
 
                                 {/*email*/}
                                 <EmployeeCreateInput type="email" placeholder={this.props.t('email')}
-                                                     name="email" id="email" label={this.props.t('email')} focus="false" value={this.state.email}
-                                                     onChangeInput={this.onChangeEmail}  />
+                                    name="email" id="email" label={this.props.t('email')} focus="false" value={this.state.email}
+                                    onChangeInput={this.onChangeInput} error={email} />
 
                                 {/*password*/}
                                 <EmployeeCreateInput type="password" placeholder={this.props.t('password')}
-                                                     name="password" id="password" label={this.props.t('password')} focus="false" value={this.state.password}
-                                                     onChangeInput={this.onChangePassword}  />
+                                    name="password" id="password" label={this.props.t('password')} focus="false" value={this.state.password}
+                                    onChangeInput={this.onChangeInput} error={password} />
 
                                 {/*price*/}
                                 <EmployeeCreateInput type="number" placeholder={this.props.t('price')}
-                                                     name="price" id="price" label={this.props.t('price')} focus="false" value={this.state.price}
-                                                     onChangeInput={this.onChangePrice}  />
+                                    name="price" id="price" label={this.props.t('price')} focus="false" value={this.state.price}
+                                    onChangeInput={this.onChangeInput} error={price} />
 
                                 {/*Button*/}
                                 <div className="mt-3 mb-3 d-inline">
