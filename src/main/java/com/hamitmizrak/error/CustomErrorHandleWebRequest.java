@@ -1,4 +1,4 @@
-package blog.hamitmizrak.error;
+package com.hamitmizrak.error;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -21,10 +21,28 @@ import java.util.Map;
 
 //SpringBoot defaultta gelen dışında kendi ErrorController yazalım
 @RestController
-//@CrossOrigin
+@CrossOrigin
 //Spring Boot Error and Exception Handling
 public class CustomErrorHandleWebRequest implements ErrorController { //
 
+
+    //1.YOL BAD REQUEST
+    // Exception handling : 400
+    // eğer input validation işlemi olursa buradaki metot devreye girecek
+    // Eğer MethodArgumentNotValidException istisna meydana gelirse bu istisnayı yakalasın
+ /*  @ExceptionHandler(MethodArgumentNotValidException.class)
+    //400 göndersin yazmazsak spring 200 döner
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ApiResult handleValidationException(MethodArgumentNotValidException exception) {
+        ApiResult error = new ApiResult(400, "Validation error888", PATH);
+        Map<String, String> validationErrors = new HashMap<>();
+        for (FieldError fieldError : exception.getBindingResult().getFieldErrors()) {
+            validationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());    }
+        error.setValidationErrors(validationErrors);
+        return error;
+    }*/
+
+    //2.YOL BAD REQUEST
     //Injection
     private final ErrorAttributes errorAttributes;
 
@@ -34,19 +52,10 @@ public class CustomErrorHandleWebRequest implements ErrorController { //
     ApiResult handleError(WebRequest webRequest) {
          //Spring +2.3
         Map<String, Object> attributes = this.errorAttributes.getErrorAttributes(webRequest, ErrorAttributeOptions.of(ErrorAttributeOptions.Include.MESSAGE, ErrorAttributeOptions.Include.BINDING_ERRORS));
-        //Map<String,Object> attributes= this.errorAttributes.getErrorAttributes(webRequest,  ErrorAttributeOptions.defaults());
-        //ErrorAttributeOptions options = ErrorAttributeOptions.defaults().including(ErrorAttributeOptions.Include.MESSAGE);
-        // Map<String,Object> attributes= this.errorAttributes.getErrorAttributes(webRequest, options);
-        //Map<String,Object> attributes= this.errorAttributes.getErrorAttributes(webRequest, ErrorAttributeOptions.of(ErrorAttributeOptions.Include.MESSAGE));
         int status = (Integer) attributes.get("status");
         String message = (String) attributes.get("message");
         String path = (String) attributes.get("path");
         ApiResult error = new ApiResult(status, message, path);
-
-        Map<String, String> hata = new HashMap<>();
-        String errorAtributes2 = (String) attributes.get("error");
-        hata.put("error", errorAtributes2);
-        error.setValidationErrors(hata);
 
         //attribute errors varsa
         if (attributes.containsKey("errors")) {

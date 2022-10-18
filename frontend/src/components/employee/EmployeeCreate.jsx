@@ -42,6 +42,8 @@ class EmployeeCreate extends Component {
         //EKLEME
         if (this.state.id === "_add") {
             return;
+           //  return navigate("/");
+           //  this.history.pushState(null, 'login');
         } else {
             EmployeeServices.getEmployeeById(this.state.id).then(
                 response => {
@@ -82,7 +84,7 @@ class EmployeeCreate extends Component {
         //browser bir yere göndermesin
         event.preventDefault();
 
-        this.setState({ error: null });
+        //this.setState({ errors: null });
 
         //employee objesini doldurmak
         const { username, email, password, price } = this.state;
@@ -112,9 +114,7 @@ class EmployeeCreate extends Component {
                     this.setState({ errors: error.response.data.validationErrors })
                 }
                 this.setState({ submitSpinner: false })
-
             });
-
         } else { //GÜNCELLEME
             EmployeeServices.updateEmployee(this.state.id, employee).then(response => {
                 this.setState({ submitSpinner: false })
@@ -197,13 +197,14 @@ class EmployeeCreate extends Component {
                                 {/*Button*/}
                                 <div className="mt-3 mb-3 d-inline">
                                     <button type="reset" className="btn btn-danger" onClick={this.cancel.bind(this)}>Temizle</button>
-                                    <button type="submit" className="btn btn-primary" onClick={this.saveOrUpdateEmployee}>
 
+                                    <button type="submit" className="btn btn-primary" onClick={this.saveOrUpdateEmployee}>
                                         {submitSpinner ? <div className="spinner-border text-warning" role="status">
                                             <span className="sr-only">Loading...</span>
                                         </div> : ""}
                                         Gönder
                                     </button>
+
                                 </div>
                             </div>
                         </form>
