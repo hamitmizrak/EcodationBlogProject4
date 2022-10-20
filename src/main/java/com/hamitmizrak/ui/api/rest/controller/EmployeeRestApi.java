@@ -22,10 +22,11 @@ import java.util.Map;
 //Service => constructor injection(3.YOL)
 @RequiredArgsConstructor
 
-//dış dünyaya açılan kapımız
+//rest
 @RestController
 @RequestMapping("/employee/api/v1")
 @CrossOrigin(origins = "http://localhost:3000")
+//dış dünyaya açılan kapımız
 public class EmployeeRestApi implements IEmployeeApiRest {
 
     private final static String PATH="/employee/api/v1/employees";
